@@ -4,7 +4,7 @@ import { View, StyleSheet, Image } from 'react-native';
 import { Text, Button } from 'react-native-elements';
 import Spacer from '../components/Spacer';
 
-const Landing = () => {
+const Landing = ({ navigation }) => {
   return (
     <SafeAreaView style={{flex: 1}} >
       <View style={styles.mainContainer}>
@@ -24,10 +24,16 @@ const Landing = () => {
         </View>
         <View style={styles.buttonContainer}>
           <Spacer>
-            <Button title={'Log In'} />
+            <Button 
+            title={'Sign In'} 
+            onPress={() => navigation.navigate('SignIn')}
+            />
           </Spacer>
           <Spacer>
-            <Button title={'Sign Up'} />
+            <Button 
+              title={'Get Started'} 
+              onPress={() => navigation.navigate('SignUp')}
+              />
           </Spacer>
         </View>
       </View>
@@ -46,7 +52,7 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     marginTop: 150,
-    flex: 5,
+    flex: 4,
     justifyContent: 'space-between',
   },
   image: {
@@ -56,11 +62,13 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   shadow: {
-    shadowOffset: { width: 0, height: 12 },
     shadowColor: 'black',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
     shadowOpacity: 0.3,
-    backgroundColor: '#0000',
-    shadowRadius: 12
+    shadowRadius: 6
   },
   headerBody: {
     fontSize: 18,

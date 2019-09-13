@@ -1,0 +1,98 @@
+import React from 'react'
+import { View, FlatList, StyleSheet } from 'react-native'
+import { Input, ListItem } from 'react-native-elements';
+import Spacer from '../components/Spacer';
+
+const mockSchools = [
+  {
+    id: '1',
+    name: 'Davis West Elementary',
+    subtitle: 'Dallas, TX'
+  },
+  {
+    id: '2',
+    name: 'Waxahachie High School',
+    subtitle: 'Waxahachie, TX'
+  },
+  {
+    id: '3',
+    name: 'Davis West Elementary',
+    subtitle: 'Dallas, TX'
+  },
+  {
+    id: '4',
+    name: 'Red Oak Elem',
+    subtitle: 'Red Oak, TX'
+  },
+  {
+    id: '5',
+    name: 'West Elementary',
+    subtitle: 'Houston, TX'
+  },
+  {
+    id: '6',
+    name: 'Waxahachie High School',
+    subtitle: 'Waxahachie, TX'
+  },
+  {
+    id: '7',
+    name: 'Davis West Elementary',
+    subtitle: 'Dallas, TX'
+  },
+  {
+    id: '8',
+    name: 'Red Oak Elem',
+    subtitle: 'Red Oak, TX'
+  },
+  {
+    id: '9',
+    name: 'West Elementary',
+    subtitle: 'Houston, TX'
+  },
+]
+
+const SchoolSearch = () => {
+
+  return (
+    <View style={styles.container} >
+      <Spacer>
+        <Input 
+          placeholder={'Enter the name of your school'}
+          returnKeyType={'search'}
+          />
+      </Spacer>
+    <FlatList 
+      keyExtractor={(school) => school.id}
+      data={mockSchools}
+      renderItem={({item}) => {
+        return <ListItem
+          style={{marginHorizontal: 16}}
+          title={item.name}
+          subtitle={item.subtitle}
+          bottomDivider
+          chevron
+          />
+      }}
+      />
+    </View>
+  )
+}
+
+SchoolSearch.navigationOptions = {
+  headerStyle: {
+    borderBottomWidth: 0,
+    shadowColor: 'transparent',
+    elevation: 0
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    borderColor: 'red',
+    borderWidth: 1,
+    flex: 1
+  }
+})
+
+
+export default SchoolSearch

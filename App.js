@@ -7,12 +7,20 @@ import { setNavigator } from './src/navigationRef';
 import ResolveAuth from './src/screens/ResolveAuth';
 import Home from './src/screens/Home';
 import Landing from './src/screens/Landing';
+import SchoolSearch from './src/screens/SchoolSearch';
+import SignUp from './src/screens/SignUp';
+import SignIn from './src/screens/SignIn';
+
+const landingFlowNavigator = createStackNavigator({
+  Landing, 
+  SignIn,
+  SignUp,
+  SchoolSearch 
+})
 
 const switchNavigator = createSwitchNavigator({
   ResolveAuth,
-  landingFlow: createStackNavigator({
-    Landing
-  }),
+  landingFlow: landingFlowNavigator,
   homeFlow: createBottomTabNavigator({
     Home
   })

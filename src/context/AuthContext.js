@@ -2,19 +2,25 @@ import { AsyncStorage } from 'react-native';
 import createDataContext from './createDataContext';
 import pippinApi from '../api/pippin';
 import { navigate } from '../navigationRef';
+import {
+   SIGN_UP_ERROR,
+   USER_SIGN_IN,
+   CLEAR_ERRORS,
+   SIGN_OUT
+ } from './AuthTypes';
 
 const authReducer = (state, action) => {
   switch (action.type) {
-    case 'SIGN_UP_ERROR':
+    case SIGN_UP_ERROR:
       return {...state, errorMessage: action.payload }
 
-    case 'USER_SIGN_IN':      
+    case USER_SIGN_IN:      
       return { token: action.payload, errorMessage: '' }
     
-    case 'CLEAR_ERRORS':
+    case CLEAR_ERRORS:
       return { ...state, errorMessage: '' }
 
-    case 'SIGN_OUT':
+    case SIGN_OUT:
       return { token: null, errorMessage: '' }
 
     default:
@@ -30,12 +36,12 @@ const signUp = (dispatch) => ({ email, password }) => {
     return AsyncStorage.setItem('token', token)
   })
   .then(() => {
-    dispatch({type: 'USER_SIGN_IN', payload: token})
-    navigate('Home')
+    dispatch({type: USER_SIGN_IN, payload: token})
+    navigate('SchoolSearch')
   })
   .catch(error => {
     console.log(error);
-    dispatch({type: 'SIGN_UP_ERROR', payload: 'Sign up error'})
+    dispatch({type: SIGN_UP_ERROR, payload: 'Sign up error'})
   })
 }
 
@@ -47,12 +53,12 @@ const signIn = (dispatch) => ({ email, password }) => {
     return AsyncStorage.setItem('token', token)
   })
   .then(() => {
-    dispatch({type: 'USER_SIGN_IN', payload: token})
+    dispatch({type: USER_SIGN_IN, payload: token})
     navigate('Home')
   })
   .catch(error => {
     console.log(error);
-    dispatch({type: 'SIGN_UP_ERROR', payload: 'Sign up error'})
+    dispatch({type: SIGN_UP_ERROR, payload: 'Sign up error'})
   })
 }
 
@@ -60,8 +66,8 @@ const localSignIn = (dispatch) => () => {
   AsyncStorage.getItem('token')
   .then(token => {
     if (token) {
-      dispatch({type: 'USER_SIGN_IN', payload: token})
-      navigate('TrackList')
+      dispatch({type: USER_SIGN_IN, payload: token})
+      // navigate('TrackList')
     } else {
       navigate('Landing')
     }
@@ -72,12 +78,12 @@ const localSignIn = (dispatch) => () => {
 }
 
 const clearErrors = (dispatch) => () => {
-  dispatch({ type: 'CLEAR_ERRORS' })
+  dispatch({ type: CLEAR_ERRORS })
 }
 
 const signOut = (dispatch) => async () => {
   await AsyncStorage.removeItem('token')
-  dispatch({ type: 'SIGN_OUT' })
+  dispatch({ type: SIGN_OUT })
   navigate('Landing')
 }
 
