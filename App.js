@@ -10,6 +10,7 @@ import Landing from './src/screens/Landing';
 import SchoolSearch from './src/screens/SchoolSearch';
 import SignUp from './src/screens/SignUp';
 import SignIn from './src/screens/SignIn';
+import Account from './src/screens/Account';
 
 const landingFlowNavigator = createStackNavigator({
   Landing, 
@@ -18,12 +19,30 @@ const landingFlowNavigator = createStackNavigator({
   SchoolSearch 
 })
 
+const homeStackNavigator = createStackNavigator({
+  Home,
+  Account
+}, { mode: 'modal' })
+
+homeStackNavigator.navigationOptions = ({navigation}) => {  
+  if(navigation.state.index !== 0){
+    return {
+      tabBarVisible: false,
+    };
+  }
+  return {
+    tabBarVisible: true,
+  };
+}
+
 const switchNavigator = createSwitchNavigator({
   ResolveAuth,
   landingFlow: landingFlowNavigator,
-  homeFlow: createBottomTabNavigator({
-    Home
+  mainFlow: createBottomTabNavigator({
+    homeRoot: homeStackNavigator
   })
+}, {
+  initialRouteName: 'mainFlow'
 });
 
 const App = createAppContainer(switchNavigator);
