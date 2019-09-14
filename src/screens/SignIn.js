@@ -14,6 +14,7 @@ const SignIn = ({navigation}) => {
         />
       <View style={styles.authContainer}>
         <AuthForm 
+          isLoading={false}
           buttonTitle={'Sign In'}
           errorMessage={state.errorMessage}
           onSubmit={() => navigation.navigate('Home')}

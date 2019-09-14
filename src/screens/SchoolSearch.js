@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, FlatList, StyleSheet } from 'react-native'
+import { View, FlatList, StyleSheet, TouchableOpacity } from 'react-native'
 import { Input, ListItem } from 'react-native-elements';
 import Spacer from '../components/Spacer';
 
@@ -53,6 +53,22 @@ const mockSchools = [
 
 const SchoolSearch = () => {
 
+  selectSchool = (school) => {
+    console.log(school);
+  }
+
+  renderItem = ({ item }) => (
+    <TouchableOpacity onPress={() => this.selectSchool(item)}>
+      <ListItem
+        style={{marginHorizontal: 16}}
+        title={item.name}
+        subtitle={item.subtitle}
+        bottomDivider
+        chevron
+        />
+    </TouchableOpacity>
+  )
+
   return (
     <View style={styles.container} >
       <Spacer>
@@ -64,15 +80,7 @@ const SchoolSearch = () => {
     <FlatList 
       keyExtractor={(school) => school.id}
       data={mockSchools}
-      renderItem={({item}) => {
-        return <ListItem
-          style={{marginHorizontal: 16}}
-          title={item.name}
-          subtitle={item.subtitle}
-          bottomDivider
-          chevron
-          />
-      }}
+      renderItem={this.renderItem}
       />
     </View>
   )
@@ -88,11 +96,8 @@ SchoolSearch.navigationOptions = {
 
 const styles = StyleSheet.create({
   container: {
-    borderColor: 'red',
-    borderWidth: 1,
     flex: 1
   }
 })
-
 
 export default SchoolSearch

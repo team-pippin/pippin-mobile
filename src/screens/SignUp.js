@@ -18,6 +18,7 @@ const SignUp = ({navigation}) => {
       </Spacer>
       <View style={styles.authContainer}>
         <AuthForm 
+          isLoading={false}
           buttonTitle={'Sign Up'}
           errorMessage={state.errorMessage}
           onSubmit={() => navigation.navigate('SchoolSearch')}
