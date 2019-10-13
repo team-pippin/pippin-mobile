@@ -1,19 +1,21 @@
-import axios from 'axios';
-import  { AsyncStorage } from 'react-native';
+import axios from "axios";
+import { AsyncStorage } from "react-native";
 
 const instance = axios.create({
-  baseURL: 'http://localhost:3000'
-})
+  baseURL: false
+    ? "http://localhost:3000"
+    : "https://pippin-staging.herokuapp.com/"
+});
 
 instance.interceptors.request.use(
-  async (config) => {
-    const token = await AsyncStorage.getItem('token');
+  async config => {
+    const token = await AsyncStorage.getItem("token");
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
   },
-  (error) => {
+  error => {
     return Promise.reject(error);
   }
 );

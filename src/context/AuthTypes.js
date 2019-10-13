@@ -1,11 +1,11 @@
-const SIGN_UP_ERROR = 'SIGN_UP_ERROR';
-const USER_SIGN_IN = 'USER_SIGN_IN'
-const CLEAR_ERRORS = 'CLEAR_ERRORS'
-const SIGN_OUT = 'SIGN_OUT'
+const SIGN_UP_ERROR = "SIGN_UP_ERROR";
+const USER_SIGN_IN = "USER_SIGN_IN";
+const CLEAR_ERRORS = "CLEAR_ERRORS";
+const SIGN_OUT = "SIGN_OUT";
 
-export default { 
-  SIGN_UP_ERROR, 
-  USER_SIGN_IN, 
-  CLEAR_ERRORS, 
-  SIGN_OUT 
-}
+export default {
+  SIGN_UP_ERROR,
+  USER_SIGN_IN,
+  CLEAR_ERRORS,
+  SIGN_OUT
+};
