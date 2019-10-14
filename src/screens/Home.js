@@ -1,10 +1,11 @@
 import React from "react";
 import { SafeAreaView } from "react-navigation";
 import { View, StyleSheet, ScrollView } from "react-native";
-import HomeHeader from "../components/HomeHeader";
+import HomeHeader from "../components/Home/HomeHeader";
 import Spacer from "../components/Spacer";
-import HomeHeroCard from "../components/HomeHeroCard";
-import HomeFeatures from "../components/HomeFeatures";
+import HomeHeroCard from "../components/Home/HomeHeroCard";
+import HomeFeatures from "../components/Home/HomeFeatures";
+import HomeLinks from "../components/Home/HomeLinks";
 
 const Home = ({ navigation }) => {
   return (
@@ -19,10 +20,8 @@ const Home = ({ navigation }) => {
         <Spacer>
           <HomeHeroCard />
         </Spacer>
-        <Spacer>
-          <HomeFeatures />
-        </Spacer>
-        <View style={{ height: 300, backgroundColor: "red" }} />
+        <HomeFeatures />
+        <HomeLinks />
       </ScrollView>
     </SafeAreaView>
   );

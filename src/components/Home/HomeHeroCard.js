@@ -7,13 +7,13 @@ const HomeHeroCard = () => {
     <View style={styles.cardContainer}>
       <View style={styles.imageContainer}>
         <Image
-          source={require("../../assets/school.jpg")}
+          source={require("../../../assets/school.jpg")}
           style={styles.image}
         />
       </View>
 
       <View style={styles.cardTitleContainer}>
-        <Text h3>Welcome to Pippin.</Text>
+        <Text style={styles.title}>Welcome to Pippin.</Text>
         <Text>Tap Here for info adsfa sda sdfadfadsfadsfadfasdf asdf</Text>
       </View>
     </View>
@@ -45,6 +45,10 @@ const styles = StyleSheet.create({
     width: "100%",
     height: undefined,
     aspectRatio: 1.3
+  },
+  title: {
+    fontSize: 26,
+    fontWeight: "600"
   }
 });
 
